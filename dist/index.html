@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ELYQUID</title>
+<meta name="description" content="ELYQUID is a community token for the Elysium network, with a live market board that updates by itself.">
+<meta name="theme-color" content="#012531">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+<link rel="apple-touch-icon" href="./brand/apple-touch-icon.png">
+<meta property="og:title" content="ELYQUID">
+<meta property="og:description" content="Water finds its level. Trades find their purpose.">
+<meta property="og:image" content="https://elyquid.xyz/brand/banner.jpg">
+<meta property="og:url" content="https://elyquid.xyz/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a class="brand" href="#top" aria-label="ELYQUID home">
+      <img src="./brand/logo-96.png" alt="" width="32" height="32">
+      <span>ELYQUID</span>
+    </a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#market">Market</a>
+      <a href="#flow">Flow</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+    <div class="nav__social" id="social" aria-label="Social links"></div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="ca" aria-label="Contract address">
+    <div class="ca__in">
+      <div class="ca__label">Contract</div>
+      <button class="ca__slot spot" id="ca-slot" type="button"></button>
+    </div>
+  </section>
+
+  <section class="hero" id="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="mesh mesh--a" data-depth="0.02"></div>
+      <div class="mesh mesh--b" data-depth="0.035"></div>
+      <div class="mesh mesh--c" data-depth="0.05"></div>
+      <div class="ring ring--1" data-depth="0.07"></div>
+      <div class="ring ring--2" data-depth="0.11"></div>
+      <div class="ring ring--3" data-depth="0.16"></div>
+      <div class="grain"></div>
+    </div>
+    <div class="hero__inner" data-depth="-0.03">
+      <span class="pill rise" style="--i:0"><i class="dot"></i><span id="pill-text">Connecting to the feed</span></span>
+      <h1 class="hero__word rise" style="--i:1">ELYQUID</h1>
+      <p class="hero__tag rise" style="--i:2">Water finds its level. Trades find their purpose.</p>
+      <p class="hero__sub rise" style="--i:3">A community token for the Elysium network, paired with a market board that breathes in real time.</p>
+      <div class="hero__cta rise" style="--i:4">
+        <a class="btn btn--primary" href="#market">Watch the board</a>
+        <a class="btn btn--ghost" id="cta-x" href="#roadmap">See the roadmap</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="ticker" aria-label="Live ticker">
+    <div class="ticker__track" id="ticker"></div>
+  </section>
+
+  <section class="stats wrap" aria-labelledby="stats-h">
+    <h2 class="sec-h reveal" id="stats-h">The network, at a glance</h2>
+    <div class="stats__grid" id="stats">
+      <article class="tile spot reveal" style="--i:0"><div class="tile__label">Pairs in view</div><div class="tile__value" data-stat="count">—</div><div class="tile__sub">Ranked by turnover</div></article>
+      <article class="tile spot reveal" style="--i:1"><div class="tile__label">Volume, 24h</div><div class="tile__value" data-stat="vol">—</div><div class="tile__sub">Summed over the board</div></article>
+      <article class="tile spot reveal" style="--i:2"><div class="tile__label">Depth in view</div><div class="tile__value" data-stat="liq">—</div><div class="tile__sub">Reserves behind the board</div></article>
+      <article class="tile tile--ice spot reveal" style="--i:3"><div class="tile__label">Chain ID</div><div class="tile__value" id="stat-chain">—</div><div class="tile__sub" id="stat-gas">—</div></article>
+    </div>
+    <p class="cap reveal">Figures come from public market feeds and refresh on their own.</p>
+  </section>
+
+  <section class="market wrap" id="market" aria-labelledby="market-h">
+    <div class="market__head">
+      <div>
+        <h2 class="sec-h reveal" id="market-h">Live market board</h2>
+        <p class="lead reveal" style="--i:1">Ten of the busiest pairs throughout the Elysium network, ranked by turnover. Row one is held for ELYQUID.</p>
+      </div>
+      <div class="tabs reveal" role="tablist" aria-label="Sort board" id="board-tabs">
+        <button class="tab is-on" role="tab" aria-selected="true" data-sort="vol">Turnover</button>
+        <button class="tab" role="tab" aria-selected="false" data-sort="chg">Movers</button>
+        <button class="tab" role="tab" aria-selected="false" data-sort="liq">Depth</button>
+      </div>
+    </div>
+    <div class="card board reveal" id="board">
+      <div class="board__cols" aria-hidden="true">
+        <span class="c-rank">#</span><span class="c-name">Token</span><span class="c-price">Price</span><span class="c-chg">24h</span><span class="c-vol">Volume</span><span class="c-liq">Liquidity</span><span class="c-copy"></span>
+      </div>
+      <div id="board-rows" role="list"></div>
+    </div>
+    <p class="status" id="board-status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="flow wrap" id="flow" aria-labelledby="flow-h">
+    <h2 class="sec-h reveal" id="flow-h">A calm way to read the board</h2>
+    <div class="steps">
+      <article class="card step spot reveal" style="--i:0"><span class="step__n">01</span><h3>Spot the movement</h3><p>Scan for pairs where turnover and depth climb together instead of one racing ahead of the other.</p></article>
+      <article class="card step spot reveal" style="--i:1"><span class="step__n">02</span><h3>Check the footing</h3><p>Weigh the size of a price swing against the reserves behind it before sizing anything.</p></article>
+      <article class="card step spot reveal" style="--i:2"><span class="step__n">03</span><h3>Move with intent</h3><p>Open your preferred venue, confirm the address twice, and act on purpose rather than on impulse.</p></article>
+    </div>
+  </section>
+
+  <section class="roadmap wrap" id="roadmap" aria-labelledby="road-h">
+    <h2 class="sec-h reveal" id="road-h">Where the current leads</h2>
+    <div class="tabs reveal" role="tablist" aria-label="Roadmap phases" id="road-tabs">
+      <button class="tab is-on" role="tab" aria-selected="true" data-phase="0">Foundation</button>
+      <button class="tab" role="tab" aria-selected="false" data-phase="1">Community</button>
+      <button class="tab" role="tab" aria-selected="false" data-phase="2">Reach</button>
+    </div>
+    <div class="card phase spot reveal" id="phase" role="tabpanel" aria-live="polite"></div>
+  </section>
+
+  <section class="close wrap">
+    <div class="close__block reveal">
+      <h2>Stay close to the current.</h2>
+      <p>Announcements land on X first. The contract address appears at the top of this page once it has been confirmed.</p>
+      <div class="hero__cta"><a class="btn btn--primary" id="close-x" href="#top">Back to the top</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot__in">
+    <div class="foot__cols">
+      <div class="foot__brand"><img src="./brand/logo-96.png" alt="" width="28" height="28"><span>ELYQUID</span></div>
+      <div><h4>Navigate</h4><a href="#market">Market</a><a href="#flow">Flow</a><a href="#roadmap">Roadmap</a></div>
+      <div><h4>Network</h4><a id="f-explorer" href="#top">Explorer</a><span id="f-chain" class="muted"></span></div>
+      <div><h4>Social</h4><span id="f-social"></span></div>
+    </div>
+    <p class="legal">ELYQUID is a community project, separate from the Elysium team and Kinetiq. Nothing here is financial advice, and digital assets can fall to zero.</p>
+  </div>
+</footer>
+
+<script type="module" src="./main.js"></script>
+</body>
+</html>
